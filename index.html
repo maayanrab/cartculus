@@ -16,7 +16,7 @@
 
 <body>
   <nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark" aria-label="Fourth navbar example">
-    <div class="container-fluid"> <a class="navbar-brand" href="index.html#"> <img src="./imgs/cclogo.png"
+    <div class="container-fluid"> <a class="navbar-brand" href="index.html"> <img src="./imgs/cclogo.png"
           id="navbar-logo" alt="navbar-logo"> Cartculus</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
         aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation"> <span
@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item"> <a class="nav-link active" aria-current="page" href="index.html#">Home</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#how-to-play">How to play</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="index.html#how-to-play">How to play</a> </li>
           <li class="nav-item dropdown">
             <a id="navbar-about" class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
               aria-expanded="false">About</a>
@@ -41,12 +41,12 @@
 
   <img src="./imgs/nobackgroundlogo.png" class="img-fluid" id="main-logo" alt="main-logo">
 
-  <game-cards>
+  <div class="game-cards">
     <img src="./imgs/card_back.png" id="first_card" class="game-card" alt="first_card">
     <img src="./imgs/card1.png" id="second_card" class="game-card" alt="second_card">
     <img src="./imgs/card7.png" id="third_card" class="game-card" alt="third_card">
     <img src="./imgs/card2.png" id="fourth_card" class="game-card" alt="fourth_card">
-  </game-cards>
+  </div>
 
   <div class="everything">
 
@@ -199,6 +199,9 @@
       item.addEventListener('click', collapseNavbar);
     });
   </script>
+
+
+
 
 
 </body>
