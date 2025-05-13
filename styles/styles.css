@@ -52,17 +52,6 @@ body {
   opacity: 0;
 }
 
-.carousel-caption h5,
-.carousel-caption p {
-  color: rgba(0, 0, 0);
-}
-
-.carousel {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 10px 20px 10px 20px;
-}
-
 h2 {
     text-align: center;
 }
@@ -100,74 +89,25 @@ h2 {
   height: 40vh;
   max-height: 400px;
   top: 45vh;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: -15em;
   z-index: -1;
   opacity: 0.20;
   overflow: hidden;
+  visibility: hidden;
+
+  animation: scrollMovement linear forwards;
+  animation-timeline: view();
+  animation-range-start: entry;
+  animation-range-end: contain - 800;
+  will-change: transform;
 }
  
-@keyframes scrollMoveFirst {
+@keyframes scrollMovement {
   from {
-      transform: translate(max(-50em, -100vw), 50vh) rotate(-10deg);
+    visibility: visible;
+    transform: rotate(-10deg);
   }
   to {
-    transform: translate(-10em, -250%) rotate(-65deg);
+    transform: translate(15em, -50em) rotate(-65deg);
   }
 }
-
-#first_card {
-  animation: scrollMoveFirst linear;
-  animation-timeline: view();
-  animation-range: entry 0% cover 100%;
-  will-change: transform;
-}
-
-@keyframes scrollMoveSecond {
-  from {
-      transform: translate(min(50em, 100vw), 200vh) rotate(-40deg);
-  }
-  to {
-    transform: translate(-10%, -250%) rotate(70deg);
-  }
-}
-
-#second_card {
-  animation: scrollMoveSecond linear;
-  animation-timeline: view();
-  animation-range: entry 0% cover 100%;
-  will-change: transform;
-}
-
-@keyframes scrollMoveThird {
-  from {
-      transform: translate(max(-60em, -50vw), 350vh) rotate(0deg);
-  }
-  to {
-    transform: translate(max(-30em, -150%), 0%) rotate(-250deg);
-  }
-}
-
-#third_card {
-  animation: scrollMoveThird linear;
-  animation-timeline: view();
-  animation-range: entry 0% cover 100%;
-  will-change: transform;
-}
-
-@keyframes scrollMoveFourth {
-  from {
-      transform: translate(min(50em, 100vw), 600vh) rotate(-40deg);
-  }
-  to {
-    transform: translate(30%, 0%) rotate(70deg);
-  }
-}
-
-#fourth_card {
-  animation: scrollMoveFourth linear;
-  animation-timeline: view();
-  animation-range: entry 0% cover 100%;
-  will-change: transform;
-}
-
