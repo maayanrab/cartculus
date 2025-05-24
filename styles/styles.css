@@ -91,7 +91,8 @@ h2 {
   top: 45vh;
   left: -15em;
   z-index: -1;
-  opacity: 0.20;
+  /* opacity: 0.20; */
+  opacity: 0.40;
   overflow: hidden;
   visibility: hidden;
 

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark" aria-label="Fourth navbar example">
+  <nav class="navbar sticky-top navbar-expand-sm navbar-auto bg-auto" aria-label="Fourth navbar example">
     <div class="container-fluid"> <a class="navbar-brand" href="index.html"> <img src="./imgs/cclogo.png"
           id="navbar-logo" alt="navbar-logo"> Cartculus</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
@@ -35,6 +35,13 @@
             </ul>
           </li>
         </ul>
+
+        <!-- dark / light mode -->
+        <div class="form-check form-switch text-light ms-auto">
+          <input class="form-check-input" type="checkbox" id="themeToggle">
+          <label class="form-check-label text-body" for="themeToggle">Light Mode</label>
+        </div>
+
       </div>
     </div>
   </nav>
@@ -205,10 +212,55 @@
     });
   </script>
 
+  <!-- Handle light / dark mode switch -->
+  <script>
+    // const themeToggle = document.getElementById('themeToggle');
+    // const htmlElement = document.documentElement;
 
+    // // Load saved theme preference
+    // const savedTheme = localStorage.getItem('theme');
+    // if (savedTheme) {
+    //   htmlElement.setAttribute('data-bs-theme', savedTheme);
+    //   themeToggle.checked = savedTheme === 'light';
+    // }
 
+    // themeToggle.addEventListener('change', () => {
+    //   const newTheme = themeToggle.checked ? 'light' : 'dark';
+    //   htmlElement.setAttribute('data-bs-theme', newTheme);
+    //   localStorage.setItem('theme', newTheme);
+    // });
 
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+    const navbarLogo = document.getElementById('navbar-logo');
+    const mainLogo = document.getElementById('main-logo');
 
-</body>
+    function applyTheme(theme) {
+      htmlElement.setAttribute('data-bs-theme', theme);
+      localStorage.setItem('theme', theme);
+      themeToggle.checked = theme === 'light';
 
-</html>
+      // Update label
+      document.querySelector('label[for="themeToggle"]').textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+
+      // Update logos
+      mainLogo.src = theme === 'light' ? './imgs/nobackgroundlogo-light.png' : './imgs/nobackgroundlogo.png';
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme);
+
+    // Toggle handler
+    themeToggle.addEventListener('change', () => {
+      const newTheme = themeToggle.checked ? 'light' : 'dark';
+      applyTheme(newTheme);
+    });
+  </script>
+  
+  
+  
+  
+  </body>
+  
+  </html>
