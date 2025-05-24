@@ -39,7 +39,7 @@
         <!-- dark / light mode -->
         <div class="form-check form-switch text-light ms-auto">
           <input class="form-check-input" type="checkbox" id="themeToggle">
-          <label class="form-check-label text-body" for="themeToggle">Light Mode</label>
+          <label class="form-check-label text-body" for="themeToggle">Dark Mode</label>
         </div>
 
       </div>
@@ -241,7 +241,7 @@
       themeToggle.checked = theme === 'light';
 
       // Update label
-      document.querySelector('label[for="themeToggle"]').textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+      document.querySelector('label[for="themeToggle"]').textContent = theme === 'light' ? 'Light Mode' : 'Dark Mode';
 
       // Update logos
       mainLogo.src = theme === 'light' ? './imgs/nobackgroundlogo-light.png' : './imgs/nobackgroundlogo.png';
