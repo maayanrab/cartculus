@@ -1,4 +1,4 @@
-# Card Math Game
+# CartCulus
 
 A math-based card game built with React.
 

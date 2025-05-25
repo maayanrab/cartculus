@@ -59,7 +59,7 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1>Cartculus</h1>
+      <h1>CartCulus</h1>
       <div className="target">
         <p>Target:</p>
         <Card value={target} isAbstract={target < 1 || target > 13} />
