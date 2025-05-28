@@ -1,4 +1,5 @@
 {
+  "homepage": "/cartculus/",
   "name": "cartculus",
   "version": "1.0.0",
   "description": "A simple card math game using React",
