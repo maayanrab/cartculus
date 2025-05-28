@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/cartculus/static/css/main.3b4231a4.css",
-    "main.js": "/cartculus/static/js/main.00722557.js",
-    "index.html": "/cartculus/index.html",
-    "main.3b4231a4.css.map": "/cartculus/static/css/main.3b4231a4.css.map",
-    "main.00722557.js.map": "/cartculus/static/js/main.00722557.js.map"
+    "main.css": "/cartculus-react-game/public/static/css/main.ef132fbb.css",
+    "main.js": "/cartculus-react-game/public/static/js/main.5aed0fb3.js",
+    "index.html": "/cartculus-react-game/public/index.html",
+    "main.ef132fbb.css.map": "/cartculus-react-game/public/static/css/main.ef132fbb.css.map",
+    "main.5aed0fb3.js.map": "/cartculus-react-game/public/static/js/main.5aed0fb3.js.map"
   },
   "entrypoints": [
-    "static/css/main.3b4231a4.css",
-    "static/js/main.00722557.js"
+    "static/css/main.ef132fbb.css",
+    "static/js/main.5aed0fb3.js"
   ]
 }
