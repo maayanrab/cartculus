@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/cartculus/static/css/main.3b4231a4.css",
-    "main.js": "/cartculus/static/js/main.00722557.js",
-    "index.html": "/cartculus/index.html",
-    "main.3b4231a4.css.map": "/cartculus/static/css/main.3b4231a4.css.map",
-    "main.00722557.js.map": "/cartculus/static/js/main.00722557.js.map"
+    "main.css": "/static/css/main.3b4231a4.css",
+    "main.js": "/static/js/main.00722557.js",
+    "index.html": "/index.html",
+    "main.3b4231a4.css.map": "/static/css/main.3b4231a4.css.map",
+    "main.00722557.js.map": "/static/js/main.00722557.js.map"
   },
   "entrypoints": [
     "static/css/main.3b4231a4.css",
