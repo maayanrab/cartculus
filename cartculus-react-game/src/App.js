@@ -8,6 +8,7 @@ export default function App() {
   const [target, setTarget] = useState(null);
   const [selected, setSelected] = useState([]);
   const [originalCards, setOriginalCards] = useState([]);
+  const [history, setHistory] = useState([]);
 
   const startNewRound = () => {
     const newCards = generateCards();
@@ -16,6 +17,7 @@ export default function App() {
     setOriginalCards(newCards);
     setTarget(newTarget);
     setSelected([]);
+    setHistory([]);
   };
 
   useEffect(() => {
@@ -45,6 +47,9 @@ export default function App() {
     const result = operate(a.value, b.value, operator);
     if (result == null) return;
 
+    // Save current state to history before modifying
+    setHistory(prev => [...prev, cards]);
+
     const newCard = {
       id: Date.now(),
       value: result,
@@ -57,12 +62,20 @@ export default function App() {
     setSelected([]);
   };
 
+  const handleUndo = () => {
+    if (history.length === 0) return;
+    const prev = history[history.length - 1];
+    setCards(prev);
+    setHistory(history.slice(0, -1));
+    setSelected([]);
+  };
+
   return (
     <div className="container">
       <h1>CartCulus</h1>
       <div className="target">
         <p>Target:</p>
-        <Card value={target} isAbstract={target < 1 || target > 13} />
+        <Card value={target} isAbstract={target < 1 || target > 13} class="target" />
       </div>
       <div className="cards">
         {cards.map((card) => (
@@ -83,6 +96,7 @@ export default function App() {
       <div className="controls">
         <button onClick={() => setCards(originalCards)}>Reset</button>
         <button onClick={startNewRound}>Reshuffle</button>
+        <button onClick={handleUndo}>Undo</button>
       </div>
     </div>
   );

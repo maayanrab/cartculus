@@ -29,6 +29,10 @@ body {
   height: 120px;
 }
 
+.target img {
+  height: 180px;
+}
+
 .card.selected {
   transform: translateY(-10px);
   box-shadow: 0 0 10px 3px #00f5ff;
