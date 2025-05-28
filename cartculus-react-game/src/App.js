@@ -48,7 +48,7 @@ export default function App() {
     const newCard = {
       id: Date.now(),
       value: result,
-      isAbstract: result < 1 || result > 13,
+      isAbstract: result < 1 || result > 13 || parseInt(result) !== result,
     };
 
     const newCards = cards.filter((c) => c.id !== aId && c.id !== bId);
