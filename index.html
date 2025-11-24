@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <nav class="navbar sticky-top navbar-expand-sm navbar-auto bg-auto" aria-label="Fourth navbar example">
+  <nav id="main-navbar" class="navbar sticky-top navbar-expand-sm navbar-auto bg-auto" aria-label="Fourth navbar example">
     <div class="container-fluid"> <a class="navbar-brand" href="index.html"> <img src="./imgs/cclogo.png"
           id="navbar-logo" alt="navbar-logo"> Cartculus</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
@@ -265,6 +265,7 @@
     const onlineIframe = document.getElementById("online-iframe");
     const mainContent = document.querySelector(".everything");
     const mainLogoImg = document.getElementById("main-logo");
+    const mainNavbar = document.getElementById("main-navbar");
 
     // Helper to restore the original homepage view
     function showMainContent() {
@@ -272,6 +273,10 @@
       onlineIframe.src = "";
       mainContent.style.display = "";
       mainLogoImg.style.display = "";
+      // Re-pin navbar to the top
+      if (mainNavbar && !mainNavbar.classList.contains("sticky-top")) {
+        mainNavbar.classList.add("sticky-top");
+      }
     }
 
     // When clicking "Play Online", show the iframe and hide the homepage content
@@ -282,10 +287,20 @@
       mainContent.style.display = "none";
       mainLogoImg.style.display = "none";
 
+      // Unpin navbar so it scrolls away with the page
+      if (mainNavbar && mainNavbar.classList.contains("sticky-top")) {
+        mainNavbar.classList.remove("sticky-top");
+      }
+
       // Close navbar (mobile)
       const navCollapse = document.getElementById('navbarsExample04');
       const bsCollapse = new bootstrap.Collapse(navCollapse, { toggle: false });
       bsCollapse.hide();
+
+      // Scroll to the iframe container after layout updates
+      setTimeout(() => {
+        onlineContainer.scrollIntoView({ behavior: "smooth" });
+      }, 50);
     });
 
     // When clicking any other navbar link or dropdown item, restore the homepage content
