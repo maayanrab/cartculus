@@ -334,10 +334,12 @@
       const bsCollapse = new bootstrap.Collapse(navCollapse, { toggle: false });
       bsCollapse.hide();
 
-      // Scroll to the iframe container after layout updates
+      // Scroll to the iframe container after navbar collapse animation finishes
       setTimeout(() => {
-        onlineContainer.scrollIntoView({ behavior: "smooth" });
-      }, 50);
+        const rect = onlineContainer.getBoundingClientRect();
+        const offset = rect.top + window.pageYOffset; // small margin from the very top
+        window.scrollTo({ top: offset, behavior: "smooth" });
+      }, 400);
     });
 
     // When clicking any other navbar link or dropdown item, restore the homepage content

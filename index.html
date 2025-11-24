@@ -12,6 +12,14 @@
   <link rel="icon" type="image/png" sizes="32x32" href="imgs/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="imgs/favicons/favicon-16x16.png">
   <link rel="manifest" href="imgs/favicons/site.webmanifest">
+
+  <style>
+    /* Ensure navbar background is opaque and always above page content */
+    #main-navbar {
+      background-color: var(--bs-body-bg);
+      z-index: 1030;
+    }
+  </style>
 </head>
 
 <body>
@@ -316,6 +324,11 @@
       }
     }
 
+    // On initial load, make sure navbar starts as sticky (unless already changed)
+    if (mainNavbar && !mainNavbar.classList.contains("sticky-top")) {
+      mainNavbar.classList.add("sticky-top");
+    }
+
     // When clicking "Play Online", show the iframe and hide the homepage content
     playBtn.addEventListener("click", () => {
       onlineContainer.style.display = "block";
@@ -337,7 +350,7 @@
       // Scroll to the iframe container after navbar collapse animation finishes
       setTimeout(() => {
         const rect = onlineContainer.getBoundingClientRect();
-        const offset = rect.top + window.pageYOffset; // small margin from the very top
+        const offset = rect.top + window.pageYOffset; // align iframe with top of viewport
         window.scrollTo({ top: offset, behavior: "smooth" });
       }, 400);
     });
