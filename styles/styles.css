@@ -103,7 +103,7 @@ h2 {
   height: 40vh;
   max-height: 400px;
   top: 45vh;
-  left: 5em;
+  left: -10em;
   z-index: -1;
   /* opacity: 0.20; */
   opacity: 0.40;
