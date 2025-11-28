@@ -275,9 +275,21 @@
           // For internal # links, prevent the default jump and handle scrolling manually
           const parts = href.split('#');
           const targetId = parts[1];
-          if (!targetId) return;
 
           event.preventDefault();
+
+          if (!targetId) {
+            // Links like "index.html#" – treat as "scroll to top" but still collapse navbar
+            if (navIsExpanded) {
+              collapseNavbar();
+              setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }, 350);
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            return;
+          }
 
           if (navIsExpanded) {
             // First collapse, then scroll once layout is stable
