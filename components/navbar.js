@@ -8,10 +8,10 @@
 */
 (function () {
   const TEMPLATE = `
-  <nav id="main-navbar" class="navbar sticky-top navbar-expand-sm navbar-auto bg-auto" aria-label="Cartculus navbar">
+  <nav id="main-navbar" class="navbar fixed-top navbar-expand-sm navbar-auto bg-auto" aria-label="Cartculus navbar">
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center gap-2" href="https://cartculus.com/">
-        <img src="https://cartculus.com/imgs/cclogo.png" id="navbar-logo" alt="navbar-logo" style="height:32px;width:auto;display:block;height:25px;"> <span>Cartculus</span>
+        <img src="https://cartculus.com/imgs/cclogo.png" id="navbar-logo" alt="navbar-logo" style="height:32px;width:auto;display:block;"> <span>Cartculus</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
         aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +46,14 @@
     // After injecting, wire up behavior
     const navRoot = target.querySelector('#main-navbar');
     const navCollapse = target.querySelector('#navbarsExample04');
+
+    // Ensure page content isn't hidden under fixed navbar
+    function adjustBodyPadding() {
+      const h = navRoot ? navRoot.getBoundingClientRect().height : 0;
+      document.body.style.paddingTop = h ? h + 'px' : '';
+    }
+    adjustBodyPadding();
+    window.addEventListener('resize', adjustBodyPadding);
 
     // Smooth scroll and collapse behavior for internal links
     const navLinks = navRoot.querySelectorAll('.nav-link:not(#navbar-about)');
