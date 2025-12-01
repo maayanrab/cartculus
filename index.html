@@ -23,41 +23,9 @@
 </head>
 
 <body>
-  <nav id="main-navbar" class="navbar sticky-top navbar-expand-sm navbar-auto bg-auto" aria-label="Fourth navbar example">
-    <div class="container-fluid"> <a class="navbar-brand" href="https://cartculus.com/"> <img src="./imgs/cclogo.png"
-          id="navbar-logo" alt="navbar-logo"> Cartculus</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
-        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation"> <span
-          class="navbar-toggler-icon"></span> </button>
-      <div class="collapse navbar-collapse" id="navbarsExample04">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item"> <a class="nav-link active" aria-current="page" href="index.html#">Home</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="index.html#how-to-play">How to play</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="https://play.cartculus.com/">Play Online</a> </li>
-          <li class="nav-item dropdown">
-            <a id="navbar-about" class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-              aria-expanded="false">About</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Our story</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-        </ul>
-
-        <!-- dark / light mode -->
-        <div class="form-check form-switch text-light ms-auto">
-          <input class="form-check-input" type="checkbox" id="themeToggle">
-          <label class="form-check-label text-body" for="themeToggle">Dark Mode</label>
-        </div>
-
-      </div>
-    </div>
-  </nav>
+  <div data-cartculus-navbar></div>
 
   <img src="./imgs/nobackgroundlogo.png" class="img-fluid" id="main-logo" alt="main-logo">
-
-  
 
   <div class="everything">
 
@@ -227,116 +195,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
     crossorigin="anonymous"></script>
-
-  <!-- Closes navbar on link click + smooth, delayed scroll for # links (fixes mobile overscroll) -->
-  <script>
-    const navLinks = document.querySelectorAll('.nav-link:not(#navbar-about)');
-    const dropdownItems = document.querySelectorAll('.dropdown-item');
-    const navCollapse = document.getElementById('navbarsExample04');
-
-    const collapseNavbar = () => {
-      const bsCollapse = new bootstrap.Collapse(navCollapse, { toggle: false });
-      bsCollapse.hide();
-    };
-
-    function scrollToHashTarget(targetId) {
-      const target = document.getElementById(targetId);
-      if (!target) return;
-
-      const navbar = document.getElementById('main-navbar');
-      const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 0;
-
-      const rect = target.getBoundingClientRect();
-      const offset = rect.top + window.pageYOffset - navbarHeight - 8;
-
-      window.scrollTo({ top: offset, behavior: 'smooth' });
-    }
-
-    navLinks.forEach((link) => {
-      link.addEventListener('click', (event) => {
-        const href = link.getAttribute('href');
-        const isHashLink = href && href.includes('#');
-
-        const navIsExpanded = navCollapse.classList.contains('show');
-
-        if (isHashLink) {
-          // For internal # links, prevent the default jump and handle scrolling manually
-          const parts = href.split('#');
-          const targetId = parts[1];
-
-          event.preventDefault();
-
-          if (!targetId) {
-            // Links like "index.html#" – treat as "scroll to top" but still collapse navbar
-            if (navIsExpanded) {
-              collapseNavbar();
-              setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }, 350);
-            } else {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-            return;
-          }
-
-          if (navIsExpanded) {
-            // First collapse, then scroll once layout is stable
-            collapseNavbar();
-            setTimeout(() => {
-              scrollToHashTarget(targetId);
-            }, 350);
-          } else {
-            scrollToHashTarget(targetId);
-          }
-        } else {
-          // Non-hash links: just collapse on mobile
-          if (navIsExpanded) {
-            collapseNavbar();
-          }
-        }
-      });
-    });
-
-    dropdownItems.forEach((item) => {
-      item.addEventListener('click', () => {
-        const navIsExpanded = navCollapse.classList.contains('show');
-        if (navIsExpanded) {
-          collapseNavbar();
-        }
-      });
-    });
-  </script>
-
-  <!-- Handle light / dark mode switch -->
-  <script>
-
-    const themeToggle = document.getElementById('themeToggle');
-    const htmlElement = document.documentElement;
-    const navbarLogo = document.getElementById('navbar-logo');
-    const mainLogo = document.getElementById('main-logo');
-
-    function applyTheme(theme) {
-      htmlElement.setAttribute('data-bs-theme', theme);
-      localStorage.setItem('theme', theme);
-      themeToggle.checked = theme === 'light';
-
-      // Update label
-      document.querySelector('label[for="themeToggle"]').textContent = theme === 'light' ? 'Light Mode' : 'Dark Mode';
-
-      // Update logos
-      mainLogo.src = theme === 'light' ? './imgs/nobackgroundlogo-light.png' : './imgs/nobackgroundlogo.png';
-    }
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    applyTheme(savedTheme);
-
-    // Toggle handler
-    themeToggle.addEventListener('change', () => {
-      const newTheme = themeToggle.checked ? 'light' : 'dark';
-      applyTheme(newTheme);
-    });
-  </script>
+  <script src="./components/navbar.js"></script>
   
 
 
