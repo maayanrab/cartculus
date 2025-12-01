@@ -119,6 +119,7 @@
     // Theme toggle behavior
     const themeToggle = navRoot.querySelector('#themeToggle');
     const htmlElement = document.documentElement;
+    const isReactHost = /play\.cartculus\.com$/i.test(location.hostname);
 
     function applyTheme(theme) {
       htmlElement.setAttribute('data-bs-theme', theme);
@@ -138,9 +139,18 @@
     }
 
     const savedTheme = (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) || 'dark';
-    applyTheme(savedTheme);
+    // Force light mode on React host and disable toggle
+    if (isReactHost) {
+      applyTheme('light');
+      if (themeToggle) {
+        themeToggle.disabled = true;
+        themeToggle.setAttribute('aria-disabled', 'true');
+      }
+    } else {
+      applyTheme(savedTheme);
+    }
 
-    if (themeToggle) {
+    if (themeToggle && !isReactHost) {
       themeToggle.addEventListener('change', () => {
         const newTheme = themeToggle.checked ? 'light' : 'dark';
         applyTheme(newTheme);
