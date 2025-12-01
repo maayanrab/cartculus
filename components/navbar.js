@@ -8,7 +8,7 @@
 */
 (function () {
   const TEMPLATE = `
-  <nav id="main-navbar" class="navbar fixed-top navbar-expand-sm navbar-auto bg-auto" aria-label="Cartculus navbar">
+  <nav id="main-navbar" class="navbar fixed-top navbar-expand-sm shadow-sm" aria-label="Cartculus navbar" style="background-color: var(--bs-body-bg);">
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center gap-2" href="https://cartculus.com/">
         <img src="https://cartculus.com/imgs/cclogo.png" id="navbar-logo" alt="navbar-logo" style="height:32px;width:auto;display:block;"> <span>Cartculus</span>
@@ -54,6 +54,15 @@
     }
     adjustBodyPadding();
     window.addEventListener('resize', adjustBodyPadding);
+
+    // Ensure opaque background (fallback if variable resolves to transparent)
+    if (navRoot) {
+      const bg = getComputedStyle(navRoot).backgroundColor;
+      if (!bg || /rgba\(\s*0\s*,\s*0\s*,\s*0\s*,\s*0\s*\)/.test(bg)) {
+        const currentTheme = document.documentElement.getAttribute('data-bs-theme') || 'dark';
+        navRoot.style.backgroundColor = currentTheme === 'light' ? '#ffffff' : '#121212';
+      }
+    }
 
     // Smooth scroll and collapse behavior for internal links
     const navLinks = navRoot.querySelectorAll('.nav-link:not(#navbar-about)');
@@ -135,6 +144,11 @@
       const mainLogo = document.getElementById('main-logo');
       if (mainLogo) {
         mainLogo.src = theme === 'light' ? 'https://cartculus.com/imgs/nobackgroundlogo-light.png' : 'https://cartculus.com/imgs/nobackgroundlogo.png';
+      }
+
+      // Keep navbar background opaque after theme change
+      if (navRoot) {
+        navRoot.style.backgroundColor = theme === 'light' ? 'var(--bs-body-bg, #ffffff)' : 'var(--bs-body-bg, #121212)';
       }
     }
 
