@@ -10,8 +10,8 @@
   const TEMPLATE = `
   <nav id="main-navbar" class="navbar sticky-top navbar-expand-sm navbar-auto bg-auto" aria-label="Cartculus navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="https://cartculus.com/">
-        <img src="https://cartculus.com/imgs/cclogo.png" id="navbar-logo" alt="navbar-logo"> Cartculus
+      <a class="navbar-brand d-flex align-items-center gap-2" href="https://cartculus.com/">
+        <img src="https://cartculus.com/imgs/cclogo.png" id="navbar-logo" alt="navbar-logo" style="height:32px;width:auto;display:block;"> <span>Cartculus</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
         aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
