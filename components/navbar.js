@@ -8,7 +8,7 @@
 */
 (function () {
   const TEMPLATE = `
-  <nav id="main-navbar" class="navbar fixed-top navbar-expand-sm shadow-sm" aria-label="Cartculus navbar" style="background-color: var(--bs-body-bg);">
+  <nav id="main-navbar" class="navbar fixed-top navbar-expand-sm" aria-label="Cartculus navbar" style="background-color: var(--bs-body-bg);box-shadow:none;">
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center gap-2" href="https://cartculus.com/">
         <img src="https://cartculus.com/imgs/cclogo.png" id="navbar-logo" alt="navbar-logo" style="height:32px;width:auto;display:block;"> <span>Cartculus</span>
