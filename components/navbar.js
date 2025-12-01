@@ -60,7 +60,7 @@
       const bg = getComputedStyle(navRoot).backgroundColor;
       if (!bg || /rgba\(\s*0\s*,\s*0\s*,\s*0\s*,\s*0\s*\)/.test(bg)) {
         const currentTheme = document.documentElement.getAttribute('data-bs-theme') || 'dark';
-        navRoot.style.backgroundColor = currentTheme === 'light' ? '#ffffff' : '#121212';
+        navRoot.style.backgroundColor = currentTheme === 'light' ? '#f0f8ff' : '#121212';
       }
     }
 
@@ -148,8 +148,12 @@
 
       // Keep navbar background opaque after theme change
       if (navRoot) {
-        navRoot.style.backgroundColor = theme === 'light' ? 'var(--bs-body-bg, #ffffff)' : 'var(--bs-body-bg, #121212)';
+        navRoot.style.backgroundColor = theme === 'light' ? '#f0f8ff' : '#121212';
       }
+
+      // Set overall page background to match light mode requirement (#f0f8ff) and dark mode (#121212)
+      document.body.style.backgroundColor = theme === 'light' ? '#f0f8ff' : '#121212';
+      htmlElement.style.backgroundColor = theme === 'light' ? '#f0f8ff' : '#121212';
     }
 
     const savedTheme = (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) || 'dark';
