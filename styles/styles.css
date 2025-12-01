@@ -6,10 +6,6 @@ body {
   overflow-x: hidden;
 }
 
-#navbar-logo {
-    height: 25px;
-}
-
 @keyframes fadeInUp {
   0% {
     transform: translate(-50%, 30px);
