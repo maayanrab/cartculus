@@ -33,9 +33,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item"> <a class="nav-link active" aria-current="page" href="index.html#">Home</a> </li>
           <li class="nav-item"> <a class="nav-link" href="index.html#how-to-play">How to play</a> </li>
-          <li class="nav-item">
-            <button id="play-online-btn" class="nav-link">Play Online</button>
-          </li>
+          <li class="nav-item"> <a class="nav-link" href="https://play.cartculus.com/">Play Online</a> </li>
           <li class="nav-item dropdown">
             <a id="navbar-about" class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
               aria-expanded="false">About</a>
@@ -59,9 +57,7 @@
 
   <img src="./imgs/nobackgroundlogo.png" class="img-fluid" id="main-logo" alt="main-logo">
 
-  <div id="online-container" style="display:none; margin-top:20px;">
-    <iframe id="online-iframe" src="" width="100%" height="900px" style="border:none;"></iframe>
-  </div>
+  
 
   <div class="everything">
 
@@ -261,12 +257,9 @@
         const href = link.getAttribute('href');
         const isHashLink = href && href.includes('#');
 
-        // Play Online is handled separately in its own script
-        const isPlayOnlineButton = link.id === 'play-online-btn';
-
         const navIsExpanded = navCollapse.classList.contains('show');
 
-        if (isHashLink && !isPlayOnlineButton) {
+        if (isHashLink) {
           // For internal # links, prevent the default jump and handle scrolling manually
           const parts = href.split('#');
           const targetId = parts[1];
@@ -296,7 +289,7 @@
             scrollToHashTarget(targetId);
           }
         } else {
-          // Non-hash links / special buttons: just collapse on mobile
+          // Non-hash links: just collapse on mobile
           if (navIsExpanded) {
             collapseNavbar();
           }
@@ -345,76 +338,6 @@
     });
   </script>
   
-  
-  <script>
-    const playBtn = document.getElementById("play-online-btn");
-    const onlineContainer = document.getElementById("online-container");
-    const onlineIframe = document.getElementById("online-iframe");
-    const mainContent = document.querySelector(".everything");
-    const mainLogoImg = document.getElementById("main-logo");
-    const mainNavbar = document.getElementById("main-navbar");
-
-    // Helper to restore the original homepage view
-    function showMainContent() {
-      onlineContainer.style.display = "none";
-      onlineIframe.src = "";
-      mainContent.style.display = "";
-      mainLogoImg.style.display = "";
-      // Re-pin navbar to the top
-      if (mainNavbar && !mainNavbar.classList.contains("sticky-top")) {
-        mainNavbar.classList.add("sticky-top");
-      }
-    }
-
-    // On initial load, make sure navbar starts as sticky (unless already changed)
-    if (mainNavbar && !mainNavbar.classList.contains("sticky-top")) {
-      mainNavbar.classList.add("sticky-top");
-    }
-
-    // When clicking "Play Online", show the iframe and hide the homepage content
-    playBtn.addEventListener("click", () => {
-      onlineContainer.style.display = "block";
-      onlineIframe.src = "https://play.cartculus.com/";
-
-      mainContent.style.display = "none";
-      mainLogoImg.style.display = "none";
-
-      // Unpin navbar so it scrolls away with the page
-      if (mainNavbar && mainNavbar.classList.contains("sticky-top")) {
-        mainNavbar.classList.remove("sticky-top");
-      }
-
-      // Close navbar (mobile)
-      const navCollapse = document.getElementById('navbarsExample04');
-      const bsCollapse = new bootstrap.Collapse(navCollapse, { toggle: false });
-      bsCollapse.hide();
-
-      // Scroll to the iframe container after navbar collapse animation finishes
-      setTimeout(() => {
-        const rect = onlineContainer.getBoundingClientRect();
-        const offset = rect.top + window.pageYOffset; // align iframe with top of viewport
-        window.scrollTo({ top: offset, behavior: "smooth" });
-      }, 400);
-    });
-
-    // When clicking any other navbar link or dropdown item, restore the homepage content
-    const topNavLinks = document.querySelectorAll('.nav-link');
-    const topDropdownItems = document.querySelectorAll('.dropdown-item');
-
-    topNavLinks.forEach((link) => {
-      if (link.id !== "play-online-btn") {
-        link.addEventListener("click", () => {
-          showMainContent();
-        });
-      }
-    });
-
-    topDropdownItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        showMainContent();
-      });
-    });
-  </script>
 
 
 
