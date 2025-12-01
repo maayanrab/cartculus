@@ -46,23 +46,11 @@
     // After injecting, wire up behavior
     const navRoot = target.querySelector('#main-navbar');
     const navCollapse = target.querySelector('#navbarsExample04');
-    const isReactHost = /play\.cartculus\.com$/i.test(location.hostname);
-
-    // Positioning: keep fixed-top on main site, normal flow on React host
-    if (navRoot) {
-      if (isReactHost) {
-        navRoot.classList.remove('fixed-top', 'sticky-top');
-      } else {
-        // Ensure fixed-top on main site
-        navRoot.classList.add('fixed-top');
-      }
-    }
 
     // Ensure page content isn't hidden under fixed navbar
     function adjustBodyPadding() {
-      const isFixed = navRoot && navRoot.classList.contains('fixed-top');
-      const h = isFixed && navRoot ? navRoot.getBoundingClientRect().height : 0;
-      document.body.style.paddingTop = isFixed && h ? h + 'px' : '';
+      const h = navRoot ? navRoot.getBoundingClientRect().height : 0;
+      document.body.style.paddingTop = h ? h + 'px' : '';
     }
     adjustBodyPadding();
     window.addEventListener('resize', adjustBodyPadding);
@@ -82,8 +70,7 @@
       if (!targetEl) return;
 
       const navbar = document.getElementById('main-navbar');
-      const isFixed = navbar && navbar.classList.contains('fixed-top');
-      const navbarHeight = isFixed && navbar ? navbar.getBoundingClientRect().height : 0;
+      const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 0;
       const rect = targetEl.getBoundingClientRect();
       const offset = rect.top + window.pageYOffset - navbarHeight - 8;
       window.scrollTo({ top: offset, behavior: 'smooth' });
