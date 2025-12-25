@@ -35,20 +35,24 @@ body {
 .hero {
   position: relative;
   padding: 5rem 0 3rem;
+  width: 100%;
+  overflow: hidden;
 }
 
-.hero::before,
-.hero::after {
+.hero::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
   background: radial-gradient(circle at 85% 10%, rgba(37, 99, 235, 0.15), transparent 35%),
               radial-gradient(circle at 0% 60%, rgba(249, 115, 22, 0.12), transparent 35%);
   z-index: 0;
 }
 
-.hero .row {
+.hero > .container {
   position: relative;
   z-index: 1;
 }
