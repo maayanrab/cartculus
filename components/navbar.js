@@ -8,10 +8,10 @@
 */
 (function () {
   const TEMPLATE = `
-  <nav id="main-navbar" class="navbar fixed-top navbar-expand-sm" aria-label="Cartculus navbar" style="background-color: var(--bs-body-bg);box-shadow:none;">
+  <nav id="main-navbar" class="navbar fixed-top navbar-expand-sm" aria-label="Cartculus navbar" style="background-color: #f0f8ff;box-shadow:none;">
     <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="https://cartculus.com/">
-        <img src="https://cartculus.com/imgs/cclogo.png" id="navbar-logo" alt="navbar-logo" style="height:32px;width:auto;display:block;"> <span>Cartculus</span>
+      <a class="navbar-brand d-flex align-items-center" href="https://cartculus.com/" aria-label="Cartculus home">
+        <img src="./imgs/logo.png" id="navbar-logo" alt="Cartculus logo" style="height:24px;width:auto;display:block;">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
         aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,10 +31,6 @@
             </ul>
           </li>
         </ul>
-        <div class="form-check form-switch text-light ms-auto">
-          <input class="form-check-input" type="checkbox" id="themeToggle">
-          <label class="form-check-label text-body" for="themeToggle">Dark Mode</label>
-        </div>
       </div>
     </div>
   </nav>`;
@@ -47,6 +43,7 @@
     const navRoot = target.querySelector('#main-navbar');
     const navCollapse = target.querySelector('#navbarsExample04');
     const isReactHost = /play\.cartculus\.com$/i.test(location.hostname);
+    const htmlElement = document.documentElement;
 
     // Ensure page content isn't hidden under fixed navbar
     function adjustBodyPadding() {
@@ -65,14 +62,15 @@
       document.body.style.paddingTop = '';
     }
 
-    // Ensure opaque background (fallback if variable resolves to transparent)
-    if (navRoot) {
-      const bg = getComputedStyle(navRoot).backgroundColor;
-      if (!bg || /rgba\(\s*0\s*,\s*0\s*,\s*0\s*,\s*0\s*\)/.test(bg)) {
-        const currentTheme = document.documentElement.getAttribute('data-bs-theme') || 'dark';
-        navRoot.style.backgroundColor = currentTheme === 'light' ? '#f0f8ff' : '#121212';
-      }
+    // Enforce light theme across hosts
+    function applyLightTheme() {
+      htmlElement.setAttribute('data-bs-theme', 'light');
+      document.body.style.backgroundColor = '#f0f8ff';
+      htmlElement.style.backgroundColor = '#f0f8ff';
+      if (navRoot) navRoot.style.backgroundColor = '#f0f8ff';
     }
+
+    applyLightTheme();
 
     // Smooth scroll and collapse behavior for internal links
     const navLinks = navRoot.querySelectorAll('.nav-link:not(#navbar-about)');
@@ -136,54 +134,8 @@
       });
     });
 
-    // Theme toggle behavior
-    const themeToggle = navRoot.querySelector('#themeToggle');
-    const htmlElement = document.documentElement;
-
-    function applyTheme(theme) {
-      htmlElement.setAttribute('data-bs-theme', theme);
-      try { localStorage.setItem('theme', theme); } catch (_) {}
-      if (themeToggle) themeToggle.checked = theme === 'light';
-      const label = navRoot.querySelector('label[for="themeToggle"]');
-      if (label) label.textContent = theme === 'light' ? 'Light Mode' : 'Dark Mode';
-
-      // Notify host page
-      document.dispatchEvent(new CustomEvent('cartculus:themechange', { detail: { theme } }));
-
-      // Update common host logo if present (best-effort)
-      const mainLogo = document.getElementById('main-logo');
-      if (mainLogo) {
-        mainLogo.src = theme === 'light' ? 'https://cartculus.com/imgs/nobackgroundlogo-light.png' : 'https://cartculus.com/imgs/nobackgroundlogo.png';
-      }
-
-      // Keep navbar background opaque after theme change
-      if (navRoot) {
-        navRoot.style.backgroundColor = theme === 'light' ? '#f0f8ff' : '#121212';
-      }
-
-      // Set overall page background to match light mode requirement (#f0f8ff) and dark mode (#121212)
-      document.body.style.backgroundColor = theme === 'light' ? '#f0f8ff' : '#121212';
-      htmlElement.style.backgroundColor = theme === 'light' ? '#f0f8ff' : '#121212';
-    }
-
-    const savedTheme = (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) || 'dark';
-    // Force light mode on React host and disable toggle
-    if (isReactHost) {
-      applyTheme('light');
-      if (themeToggle) {
-        themeToggle.disabled = true;
-        themeToggle.setAttribute('aria-disabled', 'true');
-      }
-    } else {
-      applyTheme(savedTheme);
-    }
-
-    if (themeToggle && !isReactHost) {
-      themeToggle.addEventListener('change', () => {
-        const newTheme = themeToggle.checked ? 'light' : 'dark';
-        applyTheme(newTheme);
-      });
-    }
+    // Notify host page of enforced theme (light only)
+    document.dispatchEvent(new CustomEvent('cartculus:themechange', { detail: { theme: 'light' } }));
   }
 
   function autoMount() {
