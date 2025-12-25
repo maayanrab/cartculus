@@ -19,12 +19,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="https://cartculus.com/#">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="https://cartculus.com/">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="https://play.cartculus.com/">Play Online</a></li>
           <li class="nav-item dropdown">
             <a id="navbar-about" class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">About</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Accessibility Statement</a></li>
+            <ul class="dropdown-menu" style="background-color: #f0f8ff;">
+              <li><a class="dropdown-item" href="https://cartculus.com/accessibility.html">Accessibility Statement</a></li>
             </ul>
           </li>
         </ul>
