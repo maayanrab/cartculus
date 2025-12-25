@@ -196,3 +196,15 @@ body {
     margin-top: 2rem;
   }
 }
+
+.hebrew {
+  direction: rtl;
+  max-width: 40em;
+  padding: 0 1em;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.accessibility {
+  text-align: center;
+}
