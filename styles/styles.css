@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  background: radial-gradient(circle at 20% 20%, #dcecff, #f6fbff 38%, #f0f8ff 70%);
+  /* background: radial-gradient(circle at 20% 20%, #dcecff, #f6fbff 38%, #f0f8ff 70%); */
   color: var(--ink);
   min-height: 100vh;
   overflow-x: hidden;
@@ -28,9 +28,9 @@ body {
   backdrop-filter: blur(8px);
 }
 
-.page-shell {
+/* .page-shell {
   padding: 5rem 0 3rem;
-}
+} */
 
 .hero {
   position: relative;
