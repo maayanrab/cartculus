@@ -8,26 +8,23 @@
 */
 (function () {
   const TEMPLATE = `
-  <nav id="main-navbar" class="navbar fixed-top navbar-expand-sm" aria-label="Cartculus navbar" style="background-color: #f0f8ff;box-shadow:none;">
+  <nav id="main-navbar" class="navbar fixed-top navbar-expand-sm" aria-label="Cartculus navbar" style="background-color: #f0f8ff;box-shadow:none;padding-top:0.75rem;padding-bottom:0.75rem;">
     <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center" href="https://cartculus.com/" aria-label="Cartculus home">
+      <a class="navbar-brand d-flex align-items-center" href="https://cartculus.com/" aria-label="Cartculus home" style="margin-bottom:0;">
         <img src="./imgs/logo.png" id="navbar-logo" alt="Cartculus logo" style="height:24px;width:auto;display:block;">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
-        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation" style="margin:0 0.5rem 0 0;padding:0.25rem 0.5rem;">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="https://cartculus.com/#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://cartculus.com/#how-to-play">How to play</a></li>
           <li class="nav-item"><a class="nav-link" href="https://play.cartculus.com/">Play Online</a></li>
           <li class="nav-item dropdown">
             <a id="navbar-about" class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">About</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Our story</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="#">Accessibility Statement</a></li>
             </ul>
           </li>
         </ul>
