@@ -24,6 +24,7 @@
           <li class="nav-item dropdown">
             <a id="navbar-about" class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">About</a>
             <ul class="dropdown-menu" style="background-color: #f0f8ff;">
+              <li><a class="dropdown-item" href="https://cartculus.com/about.html">About Us</a></li>
               <li><a class="dropdown-item" href="https://cartculus.com/accessibility.html">Accessibility Statement</a></li>
             </ul>
           </li>
